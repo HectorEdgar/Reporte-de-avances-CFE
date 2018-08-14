@@ -5,7 +5,7 @@ class Mes {
     Date fechaCreación
     String mes
 
-    static hasMany = [semanas: Semana, conceptos: Concepto]
+    static hasMany = [semanas: Semana]
 
 
 

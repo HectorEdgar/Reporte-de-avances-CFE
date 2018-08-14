@@ -7,6 +7,7 @@ class Semana {
     int contador
 
     static belongsTo = [mes: Mes]
+    static  hasMany = [conceptos: Concepto]
 
     static constraints = {
     }
