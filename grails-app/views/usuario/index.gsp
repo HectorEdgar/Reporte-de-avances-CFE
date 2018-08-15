@@ -6,51 +6,6 @@
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <br>
-                        <div id="list-usuario" class="content scaffold-list" role="main">
-                            <h1>Lista de usuarios</h1>
-                            <g:if test="${flash.message}">
-                                <div class="message" role="status">${flash.message}</div>
-                            </g:if>
-                        </div>
-                        <table class="table" id="table">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellido Paterno</th>
-                                <th scope="col">Apellido Materno</th>
-                                <th scope="col">Opciones</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <g:each in="${usuarioList}">
-                            <tr>
-                                <th scope="row">${it.id}</th>
-                                <td>${it.nombre}</td>
-                                <td>${it.apellidoPaterno}</td>
-                                <td>${it.apellidoMaterno}</td>
-                                <td>
-                                    <buton class="btn btn-secondary ">
-                                        <g:link controller="usuario" class="text-white" action="edit" id="${it.id}">
-                                            Editar
-                                        </g:link>
-                                    </buton>
-                                    <a class="btn btn-danger text-dark" data-toggle="modal" data-target="#modal${it.id}">
-                                        <span class="oi oi-circle-x text-info"></span>
-                                        <i class="text-white">Eliminar</i>
-                                    </a>
-                                </td>
-                            </tr>
-                            </g:each>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-        </div>
     <g:each in="${usuarioList}" var="item">
         <div class="modal fade" id="modal${item.id}" tabindex="-1"
              role="dialog" aria-labelledby="tituloModal" aria-hidden="true">
@@ -89,21 +44,72 @@
             </div>
         </div>
     </g:each>
-            <div class="pagination">
-                <g:paginate total="${usuarioCount ?: 0}" />
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Lista de usuarios</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>Opciones</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>Opciones</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+
+                        <g:each in="${usuarioList}">
+                            <tr>
+                                <th scope="row">${it.id}</th>
+                                <td>${it.nombre}</td>
+                                <td>${it.apellidoPaterno}</td>
+                                <td>${it.apellidoMaterno}</td>
+                                <td>
+                                    <buton class="btn btn-secondary ">
+                                        <g:link controller="usuario" class="text-white" action="edit" id="${it.id}">
+                                            Editar
+                                        </g:link>
+                                    </buton>
+                                    <a class="btn btn-danger text-dark" data-toggle="modal" data-target="#modal${it.id}">
+                                        <span class="oi oi-circle-x text-info"></span>
+                                        <i class="text-white">Eliminar</i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </g:each>
+                    </tbody>
+                </table>
             </div>
+        </div>
+        <div class="card-footer small text-muted">Lista de usuarios</div>
+    </div>
+
+    </div>
 
 
-
-    <content tag="scripts">
+    <asset:javascript src="jquery-3.3.1.js" />
     <asset:javascript src="jquery.dataTables.min.js" />
-    <asset:javascript src="dataTables.bootstrap.min.js" />
+    <asset:javascript src="dataTables.bootstrap4.min.js" />
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#tabla').DataTable();
-            } );
+                $('#dataTable').DataTable();
+            });
         </script>
-    </content>
+
 
     </body>
 </html>
