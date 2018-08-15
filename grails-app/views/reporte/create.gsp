@@ -8,7 +8,7 @@
     <body>
 
       <content tag="scripts">
-        <script type="text/jscript">
+        <script type="text/javascript">
 
             function mostrar() {
               document.getElementById('permiso').style.display = 'block';
