@@ -27,7 +27,7 @@
             Bienvenido: <sec:username/>
             <sec:access expression="hasRole('ROLE_ADMIN')">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/Usuarios/index">
+                <a class="navbar-brand" href="/Usuario/index">
                   Usuarios
                 </a>
             </div>
@@ -140,8 +140,6 @@
 
 
     <div class="footer" role="contentinfo"></div>
-
-
 
     <asset:javascript src="application.js"/>
 

@@ -2,7 +2,11 @@ package prueba2
 
 class BootStrap {
 
+
     def init = { servletContext ->
+
+        def p = new Permiso(estado: true).save()
+
         def RoleAdmin = new Rol(authority: 'ROLE_ADMIN').save()
         def RoleZona = new Rol(authority: 'ROLE_ZONA').save()
         def RoleSuper = new Rol(authority: 'ROLE_SUPER').save()
@@ -41,6 +45,7 @@ class BootStrap {
         assert Usuario.count() == 12
         assert Rol.count() == 3
         assert UsuarioRol.count() == 12
+
     }
     def destroy = {
     }

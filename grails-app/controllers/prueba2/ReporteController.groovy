@@ -15,12 +15,28 @@ class ReporteController {
         respond reporteService.list(params), model:[reporteCount: reporteService.count()]
     }
 
+    def darPermiso() {
+      def p = Permiso.get(1)
+      p.estado = true
+      p.save()
+      redirect(controller: "reporte", action: "index")
+    }
+
+    def quitarPermiso() {
+      def p = Permiso.get(1)
+      p.estado = false
+      p.save()
+      redirect(controller: "reporte", action: "index")
+    }
+
     def show(Long id) {
         respond reporteService.get(id)
     }
 
     def create() {
-        respond new Reporte(params)
+        def p = Permiso.first()
+        println p
+        respond estado: p, new Reporte(params)
     }
 
     def save(Reporte reporte) {

@@ -7,20 +7,6 @@
     </head>
     <body>
 
-      <content tag="scripts">
-        <script type="text/javascript">
-
-            function mostrar() {
-              document.getElementById('permiso').style.display = 'block';
-            }
-
-            function ocultar() {
-              document.getElementById('permiso').style.display = 'none';
-            }
-
-        </script>
-      </content>
-
         <a href="#create-reporte" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <div class="nav" role="navigation">
             <ul>
@@ -34,11 +20,17 @@
 
           <sec:ifLoggedIn>
               <sec:access expression="hasRole('ROLE_ADMIN')">
-                  <input type="button" value="Mostrar" onclick="mostrar()">
-                  <input type="button" value="Ocultar" onclick="ocultar()">
+
+              <g:form method="post" action="darPermiso" controller="reporte">
+                <input type="submit" value="Dar permiso"/>
+              </g:form>
+
+              <g:form method="post" action="quitarPermiso" controller="reporte">
+                <input type="submit" value="Quitar permiso"/>
+              </g:form>
+
               </sec:access>
           </sec:ifLoggedIn>
-
 
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -55,12 +47,15 @@
                 <fieldset class="form">
                     <f:all bean="reporte"/>
                 </fieldset>
+
+                <g:if test="${estado}">
                 <fieldset class="buttons"  id="permiso">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                 </fieldset>
+                </g:if>
+
             </g:form>
         </div>
     </body>
-
 
 </html>
