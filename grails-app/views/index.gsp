@@ -9,11 +9,12 @@
 <h1>Index</h1>
 
 <sec:ifNotLoggedIn>
-    No estas logeado
+    No estas logeados
     <li class="dropdown user user-menu">
         <g:link class="btn text-blue" uri="/login/auth">Iniciar sesión</g:link>
     </li>
 </sec:ifNotLoggedIn>
+
 <sec:ifLoggedIn>
     <sec:access expression="hasRole('ROLE_ADMIN')">
         <h2>Bienvenido Admin</h2>

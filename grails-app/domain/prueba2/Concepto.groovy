@@ -6,8 +6,11 @@ class Concepto {
     String descripcion
     String codigo
 
-
-
     static constraints = {
     }
+
+    public String toString() {
+      return nombre
+    }
+
 }

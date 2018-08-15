@@ -7,8 +7,12 @@ class Zona {
     String division
 
     static belongsTo = [usuario: Usuario]
-    static hasMany = [conceptos: Concepto]
 
     static constraints = {
+    }
+
+
+    public String toString() {
+      return nombre;
     }
 }

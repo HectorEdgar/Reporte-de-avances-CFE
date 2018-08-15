@@ -3,71 +3,71 @@ package prueba2
 import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
-@Secured(['ROLE_ADMIN', 'ROLE_ZONA', 'SUPER-ADMIN'])
-class UsuarioController {
+@Secured(['ROLE_ADMIN' , 'ROLE_ZONA'])
+class ReporteController {
 
-    UsuarioService usuarioService
+    ReporteService reporteService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond usuarioService.list(params), model:[usuarioCount: usuarioService.count()]
+        respond reporteService.list(params), model:[reporteCount: reporteService.count()]
     }
 
     def show(Long id) {
-        respond usuarioService.get(id)
+        respond reporteService.get(id)
     }
 
     def create() {
-        respond new Usuario(params)
+        respond new Reporte(params)
     }
 
-    def save(Usuario usuario) {
-        if (usuario == null) {
+    def save(Reporte reporte) {
+        if (reporte == null) {
             notFound()
             return
         }
 
         try {
-            usuarioService.save(usuario)
+            reporteService.save(reporte)
         } catch (ValidationException e) {
-            respond usuario.errors, view:'create'
+            respond reporte.errors, view:'create'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
-                redirect usuario
+                flash.message = message(code: 'default.created.message', args: [message(code: 'reporte.label', default: 'Reporte'), reporte.id])
+                redirect reporte
             }
-            '*' { respond usuario, [status: CREATED] }
+            '*' { respond reporte, [status: CREATED] }
         }
     }
 
     def edit(Long id) {
-        respond usuarioService.get(id)
+        respond reporteService.get(id)
     }
 
-    def update(Usuario usuario) {
-        if (usuario == null) {
+    def update(Reporte reporte) {
+        if (reporte == null) {
             notFound()
             return
         }
 
         try {
-            usuarioService.save(usuario)
+            reporteService.save(reporte)
         } catch (ValidationException e) {
-            respond usuario.errors, view:'edit'
+            respond reporte.errors, view:'edit'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
-                redirect usuario
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'reporte.label', default: 'Reporte'), reporte.id])
+                redirect reporte
             }
-            '*'{ respond usuario, [status: OK] }
+            '*'{ respond reporte, [status: OK] }
         }
     }
 
@@ -77,11 +77,11 @@ class UsuarioController {
             return
         }
 
-        usuarioService.delete(id)
+        reporteService.delete(id)
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'usuario.label', default: 'Usuario'), id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'reporte.label', default: 'Reporte'), id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -91,7 +91,7 @@ class UsuarioController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'usuario.label', default: 'Usuario'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'reporte.label', default: 'Reporte'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }

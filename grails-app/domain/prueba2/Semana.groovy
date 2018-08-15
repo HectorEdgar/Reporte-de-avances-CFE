@@ -2,13 +2,16 @@ package prueba2
 
 class Semana {
 
-    boolean isActivo
     int numeroSemana
-    int contador
+    String descripcion
+
 
     static belongsTo = [mes: Mes]
-    static  hasMany = [conceptos: Concepto]
 
     static constraints = {
+    }
+
+    public String toString() {
+      return descripcion;
     }
 }

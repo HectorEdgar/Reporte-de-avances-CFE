@@ -8,8 +8,10 @@ class Mes {
     static hasMany = [semanas: Semana]
 
 
-
-
     static constraints = {
+    }
+
+    public String toString () {
+      return mes;
     }
 }
