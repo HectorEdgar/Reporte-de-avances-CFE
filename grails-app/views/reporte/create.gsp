@@ -13,7 +13,18 @@
                 <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
+
+
         <div id="create-reporte" class="content scaffold-create" role="main">
+
+          <sec:ifLoggedIn>
+              <sec:access expression="hasRole('ROLE_ADMIN')">
+                  <button id="ocultar">Quitar permio</button>
+                  <button id="mostrar">Dar permiso</button>
+              </sec:access>
+          </sec:ifLoggedIn>
+
+
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
@@ -29,10 +40,18 @@
                 <fieldset class="form">
                     <f:all bean="reporte"/>
                 </fieldset>
-                <fieldset class="buttons">
+                <fieldset class="buttons"  id="permiso">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                 </fieldset>
             </g:form>
         </div>
     </body>
+
+
+    <script type="text/jscript">
+          $(document).ready(function(){
+             $("#ocultar").click(function(){alert("hola")});
+             $("#mostrar").click(function(){$("#permiso").show("slow")});
+          });
+    </script>
 </html>
