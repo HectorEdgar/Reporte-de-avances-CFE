@@ -6,6 +6,21 @@
         <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
+
+      <content tag="scripts">
+        <script type="text/jscript">
+
+            function mostrar() {
+              document.getElementById('permiso').style.display = 'block';
+            }
+
+            function ocultar() {
+              document.getElementById('permiso').style.display = 'none';
+            }
+
+        </script>
+      </content>
+
         <a href="#create-reporte" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <div class="nav" role="navigation">
             <ul>
@@ -19,8 +34,8 @@
 
           <sec:ifLoggedIn>
               <sec:access expression="hasRole('ROLE_ADMIN')">
-                  <button id="ocultar">Quitar permio</button>
-                  <button id="mostrar">Dar permiso</button>
+                  <input type="button" value="Mostrar" onclick="mostrar()">
+                  <input type="button" value="Ocultar" onclick="ocultar()">
               </sec:access>
           </sec:ifLoggedIn>
 
@@ -48,10 +63,4 @@
     </body>
 
 
-    <script type="text/jscript">
-          $(document).ready(function(){
-             $("#ocultar").click(function(){alert("hola")});
-             $("#mostrar").click(function(){$("#permiso").show("slow")});
-          });
-    </script>
 </html>
