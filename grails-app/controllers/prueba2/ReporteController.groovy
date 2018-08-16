@@ -16,17 +16,17 @@ class ReporteController {
     }
 
     def darPermiso() {
-      def p = Permiso.get(1)
+      def p = Permiso.first()
       p.estado = true
       p.save()
-      redirect(controller: "reporte", action: "index")
+      redirect(controller: "reporte", action: "create")
     }
 
     def quitarPermiso() {
-      def p = Permiso.get(1)
+      def p = Permiso.first()
       p.estado = false
       p.save()
-      redirect(controller: "reporte", action: "index")
+      redirect(controller: "reporte", action: "create")
     }
 
     def show(Long id) {
@@ -35,8 +35,15 @@ class ReporteController {
 
     def create() {
         def p = Permiso.first()
-        println p
-        respond estado: p, new Reporte(params)
+        def c = Concepto.findAll()
+        def m = Mes.findAll()
+        def s = Semana.findAll()
+        def mapa = [:]
+        mapa.put('conceptosLista', c)
+        mapa.put('mesesLista', m)
+        mapa.put('semanasLista', s)
+        mapa.put('estado', p)
+        respond new Reporte(params), mapa
     }
 
     def save(Reporte reporte) {

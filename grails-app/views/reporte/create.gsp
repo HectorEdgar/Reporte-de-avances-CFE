@@ -43,18 +43,47 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.reporte}" method="POST">
-                <fieldset class="form">
-                    <f:all bean="reporte"/>
-                </fieldset>
 
-                <g:if test="${estado}">
-                <fieldset class="buttons"  id="permiso">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-                </fieldset>
-                </g:if>
+
+            <g:form method="POST" action="save" controller="reporte">
+                <p>${estado}</p>
+
+                <label>
+                  Mes
+                </label>
+                <select>
+                  <g:each in="${mesesLista}">
+                    <option value="${it.id}">${it.mes}</option>
+                  </g:each>
+                </select>
+
+                <label>
+                  Semana
+                </label>
+                <select>
+                  <g:each in="${semanasLista}">
+                    <option value="${it.id}">${it.numeroSemana}</option>
+                  </g:each>
+                </select>
+
+                <label>
+                  Concepto
+                </label>
+                <select>
+                  <g:each in="${conceptosLista}">
+                    <option value="${it.id}">${it.nombre}</option>
+                  </g:each>
+                </select>
+
+                <label>
+                  Cantidad realizada
+                </label>
+                <input type="text" name="cantidadRealizada"/>
+
+                <input type="submit"/>
 
             </g:form>
+
         </div>
     </body>
 
