@@ -42,8 +42,8 @@ class ReporteController {
         mapa.put('conceptosLista', c)
         mapa.put('mesesLista', m)
         mapa.put('semanasLista', s)
-        mapa.put('estado', p)
-        respond new Reporte(params), mapa
+        mapa.put('estado', p.estado)
+        respond new Reporte(params), model: mapa
     }
 
     def save(Reporte reporte) {

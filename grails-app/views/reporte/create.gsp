@@ -46,12 +46,10 @@
 
 
             <g:form method="POST" action="save" controller="reporte">
-                <p>${estado}</p>
-
                 <label>
                   Mes
                 </label>
-                <select>
+                <select name="mes">
                   <g:each in="${mesesLista}">
                     <option value="${it.id}">${it.mes}</option>
                   </g:each>
@@ -60,7 +58,7 @@
                 <label>
                   Semana
                 </label>
-                <select>
+                <select name="numeroSemana">
                   <g:each in="${semanasLista}">
                     <option value="${it.id}">${it.numeroSemana}</option>
                   </g:each>
@@ -69,7 +67,7 @@
                 <label>
                   Concepto
                 </label>
-                <select>
+                <select name="nombre">
                   <g:each in="${conceptosLista}">
                     <option value="${it.id}">${it.nombre}</option>
                   </g:each>
@@ -80,7 +78,9 @@
                 </label>
                 <input type="text" name="cantidadRealizada"/>
 
-                <input type="submit"/>
+                <g:if test="${estado}">
+                  <input type="submit"/>
+                </g:if>
 
             </g:form>
 
