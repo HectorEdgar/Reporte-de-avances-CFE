@@ -5,17 +5,14 @@
 // You're free to add application-wide JavaScript to this file, but it's generally better
 // to create separate JavaScript files as needed.
 //
-//= require jquery-3.3.1
-//= require all.min.js
-//= require bootstrap.bundle
-//= require bootstrap
-//
+//= require jquery.min
+//= require bootstrap.bundle.min
 //= require jquery.easing.min
 //= require Chart.bundle.min
-//= require sb-admin
-//= require datatables.min
-//= require dataTables.bootstrap4
 //= require jquery.dataTables
+//= require dataTables.bootstrap4.min
+//= require sb-admin
+//= require all.min
 //= require_self
 
 if (typeof jQuery !== 'undefined') {

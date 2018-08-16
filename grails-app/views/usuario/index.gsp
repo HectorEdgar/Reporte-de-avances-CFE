@@ -48,7 +48,8 @@
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-table"></i>
-            Lista de usuarios</div>
+            Lista de usuarios
+        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -97,19 +98,5 @@
         </div>
         <div class="card-footer small text-muted">Lista de usuarios</div>
     </div>
-
-    </div>
-
-
-    <asset:javascript src="jquery-3.3.1.js" />
-    <asset:javascript src="jquery.dataTables.min.js" />
-    <asset:javascript src="dataTables.bootstrap4.min.js" />
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#dataTable').DataTable();
-            });
-        </script>
-
-
     </body>
 </html>
