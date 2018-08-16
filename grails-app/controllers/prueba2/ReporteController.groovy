@@ -1,5 +1,10 @@
 package prueba2
 
+import org.springframework.context.MessageSource
+import pl.touk.excel.export.WebXlsxExporter
+import pl.touk.excel.export.getters.LongToDatePropertyGetter
+import pl.touk.excel.export.getters.MessageFromPropertyGetter
+import pl.touk.excel.export.XlsxExporter
 import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
@@ -14,6 +19,23 @@ class ReporteController {
         params.max = Math.min(max ?: 10, 100)
         respond reporteService.list(params), model:[reporteCount: reporteService.count()]
     }
+
+    def exportarExcel() {
+
+      List<Reporte> reporte = Reporte.list()
+      print reporte
+      def headers = ['mes', 'semanas', 'concepto', 'cantidadRealizada', 'usuario']
+      def withProperties = ['mes', 'semanas', 'concepto', 'cantidadRealizada', 'usuario']
+
+      new WebXlsxExporter().with {
+          setResponseHeaders(response)
+          fillHeader(headers)
+          add(reporte, withProperties)
+          save(response.outputStream)
+      }
+
+    }
+
 
     def darPermiso() {
       def p = Permiso.first()
