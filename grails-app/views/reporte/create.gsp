@@ -58,7 +58,7 @@
                 <label>
                   Semana
                 </label>
-                <select name="numeroSemana">
+                <select name="semanas">
                   <g:each in="${semanasLista}">
                     <option value="${it.id}">${it.numeroSemana}</option>
                   </g:each>
@@ -67,7 +67,7 @@
                 <label>
                   Concepto
                 </label>
-                <select name="nombre">
+                <select name="concepto">
                   <g:each in="${conceptosLista}">
                     <option value="${it.id}">${it.nombre}</option>
                   </g:each>
@@ -77,6 +77,8 @@
                   Cantidad realizada
                 </label>
                 <input type="text" name="cantidadRealizada"/>
+
+                <input name="usuario" type="text" value="${sec.username()}" readonly />
 
                 <g:if test="${estado}">
                   <input type="submit"/>
