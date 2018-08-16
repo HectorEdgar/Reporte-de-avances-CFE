@@ -16,11 +16,12 @@ class UsuarioController {
     }
 
     def show(Long id) {
-        respond usuarioService.get(id)
+        respond usuarioService.get(id), model: ["rol":UsuarioRol.findByUsuario(Usuario.findById(id)).rol]
     }
 
     def create() {
-        respond new Usuario(params)
+        println Rol.findAll()
+        respond new Usuario(params), model:['roles':Rol.findAll()]
     }
 
     def save(Usuario usuario) {
@@ -31,6 +32,8 @@ class UsuarioController {
 
         try {
             usuarioService.save(usuario)
+            def rol= Rol.findById(params.get("rol"))
+            UsuarioRol.create(usuario,rol,true)
         } catch (ValidationException e) {
             respond usuario.errors, view:'create'
             return
@@ -46,7 +49,8 @@ class UsuarioController {
     }
 
     def edit(Long id) {
-        respond usuarioService.get(id)
+        println "rol":UsuarioRol.findByUsuario(Usuario.findById(id)).rol
+        respond usuarioService.get(id), model: ["roles":Rol.findAll(), "rol":UsuarioRol.findByUsuario(Usuario.findById(id)).rol]
     }
 
     def update(Usuario usuario) {
@@ -54,9 +58,12 @@ class UsuarioController {
             notFound()
             return
         }
-
+        println "hola"
         try {
             usuarioService.save(usuario)
+            def rol= Rol.findById(params.get("rol"))
+            UsuarioRol.findByUsuario(usuario).delete()
+            UsuarioRol.create(usuario,rol,true)
         } catch (ValidationException e) {
             respond usuario.errors, view:'edit'
             return

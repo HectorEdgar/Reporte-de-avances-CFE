@@ -6,26 +6,63 @@
         <title><g:message code="default.show.label" args="[entityName]" /></title>
     </head>
     <body>
-        <a href="#show-usuario" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="${createLink(uri: '/')}">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="${createLink(uri: '/usuario')}">Usuario</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Detalle</li>
+            </ol>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Detalle de usuario</h1>
+                    <g:if test="${flash.message}">
+                        <div class="message" role="status">${flash.message}</div>
+                    </g:if>
+                    <g:hasErrors bean="${this.usuario}">
+                        <ul class="errors" role="alert">
+                            <g:eachError bean="${this.usuario}" var="error">
+                                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                            </g:eachError>
+                        </ul>
+                    </g:hasErrors>
+                    <g:form resource="${this.usuario}" method="POST">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" name="nombre" placeholder="Nombre..." value="${this.usuario?.nombre}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidoPaterno">Apellido paterno</label>
+                            <input type="text" class="form-control" name="apellidoPaterno" placeholder="Apellido paterno..." value="${this.usuario?.apellidoPaterno}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidoMaterno">Apellido materno</label>
+                            <input type="text" class="form-control" name="apellidoMaterno" placeholder="Apellido materno..." value="${this.usuario?.apellidoMaterno}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Usuario</label>
+                            <input type="text" class="form-control" name="username" placeholder="Usuario..." value="${this.usuario?.username}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <input type="password" class="form-control" name="password" placeholder="Contraseña..." value="${this.usuario?.password}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="rol">Rol</label>
+                            <input type="password" class="form-control" name="rol" placeholder="Contraseña..." value="${rol?.authority}" readonly>
+                        </div>
+                    </g:form>
+                    <g:form resource="${this.usuario}" method="DELETE">
+                        <button type="button" class="btn btn-secondary text-white">
+                            <g:link class="edit" action="edit" resource="${this.usuario}"><div class="text-white">Editar</div></g:link>
+                        </button>
+                        <input class="btn btn-danger" type="submit" value="Eliminar" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}
+                    </g:form>
+                </div>
+            </div>
         </div>
-        <div id="show-usuario" class="content scaffold-show" role="main">
-            <h1><g:message code="default.show.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <f:display bean="usuario" />
-            <g:form resource="${this.usuario}" method="DELETE">
-                <fieldset class="buttons">
-                    <g:link class="edit" action="edit" resource="${this.usuario}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                    <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                </fieldset>
-            </g:form>
-        </div>
+
     </body>
 </html>
