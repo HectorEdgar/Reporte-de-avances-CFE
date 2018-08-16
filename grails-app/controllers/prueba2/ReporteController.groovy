@@ -16,8 +16,28 @@ class ReporteController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+
+      String usr;
+
         params.max = Math.min(max ?: 10, 100)
-        respond reporteService.list(params), model:[reporteCount: reporteService.count()]
+
+        if (isLoggedIn()) {
+         usr = getAuthenticatedUser().username
+         print usr
+
+      }
+
+      def queryAdmin = Reporte.findAll()
+      def query = Reporte.where{usuario==usr}
+      def lista;
+      if(usr=='admin'){
+        lista = queryAdmin
+      }else {
+        lista = query
+      }
+
+      respond lista.findAll(), model:[reporteCount: reporteService.count()]
+
     }
 
     def exportarExcel() {
@@ -48,9 +68,6 @@ class ReporteController {
       def p = Permiso.first()
       p.estado = false
       p.save(flush:true)
-
-        print p.estado
-        print Permiso.first().estado
       redirect(controller: "reporte", action: "create")
     }
 
@@ -68,8 +85,6 @@ class ReporteController {
         mapa.put('mesesLista', m)
         mapa.put('semanasLista', s)
         mapa.put('estado', p.estado)
-        print p.estado
-        print p.estado.findAll()
         respond new Reporte(params), model: mapa
     }
 

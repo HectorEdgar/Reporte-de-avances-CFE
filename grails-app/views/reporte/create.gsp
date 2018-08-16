@@ -29,9 +29,7 @@
                 <input type="submit" value="Quitar permiso"/>
               </g:form>
 
-              <g:form method="post" action="exportarExcel" controller="reporte">
-                <input type="submit" value="Exportar excel"/>
-              </g:form>
+            
 
               </sec:access>
           </sec:ifLoggedIn>

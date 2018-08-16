@@ -2,14 +2,14 @@ package prueba2
 
 class Mes {
 
-    Date fechaCreación
+    Date fechaCreacion
     String mes
 
     static hasMany = [semanas: Semana]
 
 
     static constraints = {
-      fechaCreación nullable : false
+      fechaCreacion nullable : false
       mes nullable : false
       semanas nullable : true
     }
