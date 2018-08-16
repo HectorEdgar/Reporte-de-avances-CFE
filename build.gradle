@@ -4,7 +4,6 @@ buildscript {
         maven { url "https://repo.grails.org/grails/core" }
     }
     dependencies {
-
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath "org.grails.plugins:hibernate5:${gormVersion-".RELEASE"}"
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.14.8"
@@ -82,4 +81,5 @@ tasks.withType(Test) {
 assets {
     minifyJs = true
     minifyCss = true
+    includes = ["**/_*.*"]
 }
