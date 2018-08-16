@@ -9,6 +9,9 @@ class Mes {
 
 
     static constraints = {
+      fechaCreación nullable : false
+      mes nullable : false
+      semanas nullable : true
     }
 
     public String toString () {
