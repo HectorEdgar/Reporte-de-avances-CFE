@@ -7,6 +7,9 @@ class Concepto {
     String codigo
 
     static constraints = {
+      nombre nullable : false
+      descripcion nullable : false
+      codigo nullable : false
     }
 
     public String toString() {

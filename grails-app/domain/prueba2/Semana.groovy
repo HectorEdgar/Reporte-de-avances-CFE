@@ -9,6 +9,9 @@ class Semana {
     static belongsTo = [mes: Mes]
 
     static constraints = {
+      numeroSemana nullable : false
+      numeroSemana nullable : false
+      numeroSemana nullable : true
     }
 
     public String toString() {
