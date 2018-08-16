@@ -18,14 +18,17 @@ class ReporteController {
     def darPermiso() {
       def p = Permiso.first()
       p.estado = true
-      p.save()
+      p.save(flush:true)
       redirect(controller: "reporte", action: "create")
     }
 
     def quitarPermiso() {
       def p = Permiso.first()
       p.estado = false
-      p.save()
+      p.save(flush:true)
+
+        print p.estado
+        print Permiso.first().estado
       redirect(controller: "reporte", action: "create")
     }
 
@@ -43,6 +46,8 @@ class ReporteController {
         mapa.put('mesesLista', m)
         mapa.put('semanasLista', s)
         mapa.put('estado', p.estado)
+        print p.estado
+        print p.estado.findAll()
         respond new Reporte(params), model: mapa
     }
 
