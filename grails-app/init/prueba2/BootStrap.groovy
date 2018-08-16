@@ -8,19 +8,35 @@ class BootStrap {
 
         def p = new Permiso(estado: true).save()
 
-        def enero = new Mes(fechaCreacion: '2018-08-16', mes : 'Enero').save(flush:true)
+
+        def cpto1 = new Concepto(nombre:'Circuito Limpio en Propiedad' ,descripcion: 'Circuito Limpio en Propiedad',codigo: '001').save(flush:true)
+        def cpto2 = new Concepto(nombre:'Termografia' ,descripcion: 'Termografia',codigo: '002').save(flush:true)
+        def cpto3 = new Concepto(nombre:'Remplazo de Aislamiento' ,descripcion: 'Remplazo de Aislamiento',codigo: '003').save(flush:true)
+        def cpto4 = new Concepto(nombre:'Remplazo de Apartarrayo' ,descripcion: 'Remplazo de Apartarrayo',codigo: '004').save(flush:true)
+        def cpto5 = new Concepto(nombre:'PODA' ,descripcion: 'PODA',codigo: '005').save(flush:true)
+        def cpto6 = new Concepto(nombre:'Modificacion de Puentes' ,descripcion: 'Modificacion de Puentes',codigo: '006').save(flush:true)
+        def cpto7 = new Concepto(nombre:'Instalacion de Cinta Elastomerica' ,descripcion: 'Instalacion de Cinta Elastomerica',codigo: '007').save(flush:true)
+        def cpto8 = new Concepto(nombre:'Subestaciones Limpias' ,descripcion: 'Subestaciones Limpias',codigo: '008').save(flush:true)
+
+        print cpto1
+
+        Date fecha = new Date()
+        print fecha
+
+        def enero = new Mes(fechaCreacion: fecha , mes : 'Enero',semanas : null).save(flush:true)
+        def febrero = new Mes(fechaCreacion: fecha, mes : 'Febrero',semanas : null).save(flush:true)
+        def marzo = new Mes(fechaCreacion: fecha, mes : 'Marzo',semanas : null).save(flush:true)
+        def abril = new Mes(fechaCreacion: fecha, mes : 'Abril',semanas : null).save(flush:true)
+        def mayo = new Mes(fechaCreacion: fecha, mes : 'Mayo',semanas : null).save(flush:true)
+        def junio = new Mes(fechaCreacion: fecha, mes : 'Junio',semanas : null).save(flush:true)
+        def julio = new Mes(fechaCreacion: fecha, mes : 'Julio',semanas : null).save(flush:true)
+        def agosto = new Mes(fechaCreacion: fecha, mes : 'Agosto',semanas : null).save(flush:true)
+        def septiembre = new Mes(fechaCreacion: fecha, mes : 'Septiembre',semanas : null).save(flush:true)
+        def octubre = new Mes(fechaCreacion: fecha, mes : 'Octubre',semanas : null).save(flush:true)
+        def noviembre = new Mes(fechaCreacion: fecha, mes : 'Noviembre',semanas : null).save(flush:true)
+        def diciembre = new Mes(fechaCreacion: fecha, mes : 'Diciembre',semanas : null).save(flush:true)
+
         print enero
-        def febrero = new Mes(fechaCreacion: '2018-08-16', mes : 'Febrero').save(flush:true)
-        def marzo = new Mes(fechaCreacion: '2018-08-16', mes : 'Marzo').save(flush:true)
-        def abril = new Mes(fechaCreacion: '2018-08-16', mes : 'Abril').save(flush:true)
-        def mayo = new Mes(fechaCreacion: '2018-08-16', mes : 'Mayo').save(flush:true)
-        def junio = new Mes(fechaCreacion: '2018-08-16', mes : 'Junio').save(flush:true)
-        def julio = new Mes(fechaCreacion: '2018-08-16', mes : 'Julio').save(flush:true)
-        def agosto = new Mes(fechaCreacion: '2018-08-16', mes : 'Agosto').save(flush:true)
-        def septiembre = new Mes(fechaCreacion: '2018-08-16', mes : 'Septiembre').save(flush:true)
-        def octubre = new Mes(fechaCreacion: '2018-08-16', mes : 'Octubre').save(flush:true)
-        def noviembre = new Mes(fechaCreacion: '2018-08-16', mes : 'Noviembre').save(flush:true)
-        def diciembre = new Mes(fechaCreacion: '2018-08-16', mes : 'Diciembre').save(flush:true)
 
         def semana1 = new Semana(mes : enero ,numeroSemana: 1, descripcion: 'Semana 1').save(flush:true)
         def semana2 = new Semana(mes : enero ,numeroSemana: 2, descripcion: 'Semana 2').save(flush:true)
@@ -28,14 +44,7 @@ class BootStrap {
         def semana4 = new Semana(mes : enero ,numeroSemana: 4, descripcion: 'Semana 4').save(flush:true)
         def semana5 = new Semana(mes : enero ,numeroSemana: 5, descripcion: 'Semana 5').save(flush:true)
 
-        def cpto1 = new Concepto(nombre:'Circuito Limpio en Propiedad' ,descripcion: 'Circuito Limpio en Propiedad',condigo: '001').save(flush:true)
-        def cpto2 = new Concepto(nombre:'Termografia' ,descripcion: 'Termografia',condigo: '002').save(flush:true)
-        def cpto3 = new Concepto(nombre:'Remplazo de Aislamiento' ,descripcion: 'Remplazo de Aislamiento',condigo: '003').save(flush:true)
-        def cpto4 = new Concepto(nombre:'Remplazo de Apartarrayo' ,descripcion: 'Remplazo de Apartarrayo',condigo: '004').save(flush:true)
-        def cpto5 = new Concepto(nombre:'PODA' ,descripcion: 'PODA',condigo: '005').save(flush:true)
-        def cpto6 = new Concepto(nombre:'Modificacion de Puentes' ,descripcion: 'Modificacion de Puentes',condigo: '006').save(flush:true)
-        def cpto7 = new Concepto(nombre:'Instalacion de Cinta Elastomerica' ,descripcion: 'Instalacion de Cinta Elastomerica',condigo: '007').save(flush:true)
-        def cpto8 = new Concepto(nombre:'Subestaciones Limpias' ,descripcion: 'Subestaciones Limpias',condigo: '008').save(flush:true)
+        print semana1
 
 
         def RoleAdmin = new Rol(authority: 'ROLE_ADMIN').save()
